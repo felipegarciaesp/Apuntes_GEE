@@ -77,10 +77,12 @@ Todas las funciones que permiten realizar gráficos de diversos tipos se encuent
 
 Permiten obtener distintos tipos de gráficos a partir de un vector o una colección de vectores y mostrar su resultado al imprimirlos en la consola. Algunas funciones disponibles son:
 
+```
 ui.Chart.feature.byFeature.
 ui.Chart.feature.byProperty.
 ui.Chart.feature.groups.
 ui.Chart.feature.histogram.
+```
 
 Ejemplo: 
 
