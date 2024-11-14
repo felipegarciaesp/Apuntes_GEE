@@ -18,22 +18,19 @@ https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores
 # Indice de bibliotecas
 
 **Map**: funciones encargadas del manejo de la pantalla del mapa.  
-
-**ui.Chart**: funciones para realizar gráficos de diversos tipos.
+**ui.Chart**: funciones para realizar gráficos de diversos tipos.  
+**Export**: exporta resultados fuera de GEE.  
 
 # Indice de objetos:
 
 **ee.Feature**: objetos de tipo vector.  
-
 **ee.Image**: objetos de tipo imagen.  
-
 **ee.FeatureCollection**: colecciones de vectores.  
-
 **ee.ImageCollection**: colecciones de imágenes.  
-
 **ee.Array**: arreglos.  
+**ee.List**: listas.  
 
-**ee.List**: listas.
+
 
 # Indice de métodos:
 
