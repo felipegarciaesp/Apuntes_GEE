@@ -26,7 +26,7 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 
 # Secciones de la interfaz
 
-**Assets**: Ssección donde el usuario puede subir su información a GEE.
+**Assets**: Sección donde el usuario puede subir su información a GEE. Acá se pueden importar varios tipos de archivos a GEE para utilizarlos en la API: imágenes (GeoTIFF), archivos vector (shapefiles), archivos separados por comas (csv), colecciones de imágenes exportadas por el mismo GEE y carpetas.
 
 
 # Indice de bibliotecas
@@ -223,3 +223,6 @@ framesPerSecond: 24
 });
 ```
 
+# Importación de información a GEE.
+
+![Opciones disponibles para importar datos tipo raster (GeoTIFF o TFRecord)](https://github.com/felipegarciaesp/Apuntes_GEE/blob/main/Figura%201.jpg)
