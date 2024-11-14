@@ -98,4 +98,36 @@ xProperties: 'Clase',
 
 ## ui.Chart.image
 
-Permite obtener distintos tipos de gráficos a partir de una imagen o colección de imágenes.
+Permite obtener distintos tipos de gráficos a partir de una imagen o colección de imágenes. Algunas funciones diponibles son:
+
+```
+ui.Chart.image.byClass
+ui.Chart.image.byRegion
+ui.Chart.image.doySeries
+ui.Chart.image.histogram
+ui.Chart.image.seriesByRegion
+```
+
+Ejemplo: 
+
+```
+ui.Chart.image.seriesByRegion({
+// Definir la colección de imágenes a graficar
+imageCollection: coleccionImagenes,
+// Definir las regiones sobre las cuales se va a extraer la
+// información para el gráfico
+regions: areas.filter(ee.Filter.eq('Tipo','Bosque')),
+// El reductor a utilizar para resumir la información de la
+// colección de imágenes en las regiones indicadas
+reducer: ee.Reducer.mean(),
+// La banda sobre la cual se quiere construir el gráfico
+band: 'NDVI',
+// Tamaño en m del píxel para obtener la información
+scale: 30,
+// Propiedad para nombrar a cada serie
+seriesProperty: 'Tipo'
+}).setOptions({
+title: 'Bosque',
+colors: ['#EE3A19']
+});
+```
