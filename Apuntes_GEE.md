@@ -15,6 +15,18 @@ https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores
 
 > La proyección por defecto para mostrar la información en la pantalla de mapa corresponde a EPSG:3857. 
 
+> Solo se pueden exportar imágenes en formato ee.Image. Sin embargo, no siempre resulta obvio el formato de las imágenes,ya que algunas veces se pueden convertir a un formato de arreglo (ee.Array), tras lo cual hay que volver a convertir la información a formato de imagen (ee.Image) para poder exportarla. La aplicación permite exportar únicamente en formato GeoTiff o TFRecord (tensores), siendo la primera la opción por defecto.
+
+> En GEE muchas operaciones utilizan el término de scale, sin embargo, este no se refiere a la escala de trabajo en un sentido tradicional (por ejemplo, 1:50000), sino que se refiere al tamaño de píxel expresado en metros.
+
+> En algunas ocasiones, al intentar exportar una imagen muy grande (mayor a 10 000 000 de píxeles), la consola puede mostrar un error indicando que el objeto a exportar tiene un número muy alto de píxeles. En este caso, se debe aumentar el
+número de píxeles máximo permitido para la exportación. Esto se logra indicando el argumento maxPixels dentro del diccionario que se pasa a Export.image.toDrive. Por ejemplo, maxPixels: 1e10, lo cual permite exportar una imagen con hasta 1 x 10^10 píxeles.
+
+# Secciones de la interfaz
+
+**Assets**: Ssección donde el usuario puede subir su información a GEE.
+
+
 # Indice de bibliotecas
 
 **Map**: funciones encargadas del manejo de la pantalla del mapa.  
@@ -126,5 +138,36 @@ seriesProperty: 'Tipo'
 }).setOptions({
 title: 'Bosque',
 colors: ['#EE3A19']
+});
+```
+
+# Exportación de objetos fuera de GEE
+
+Sólo existen cuatro formatos válidos para exportar desde GEE: ráster (ee.Image), vector (ee.FeatureCollection), mapa y video.
+
+## Export.image
+
+Exporta imágenes (ráster, ee.Image). Hay tres opciones para exportar los resultados de una imagen:
+
+**Export.image.toAsset**: Exporta la imagen (ráster) a la sección de Assets. Útil cuando resultado se va a utilizar enotro procedimiento de GEE.  
+**Export.image.toDrive**: Exporta a Google Drive. Útil para trabajar con las imágenes (rásters) en un entorno local, como algún SIG. Esta es la opción más común y se recomienda utilizar distintas carpetas para organizarla y definir su nombre en el argumento de folder.  
+**Export.image.toCloudStorage**: Exporta la imagen a Google Cloud Storage para utilizarla en algún otro proceso a realizar en Google Cloud Platform.  
+
+Ejemplo: 
+
+```
+Export.image.toDrive({
+// Definir la imagen a exportar
+image: imgDiff,
+// Especificar el nombre con el cual se va a guardar la imagen en
+// el Google Drive
+description: 'DiferenciaNDVI_2016-2017',
+// Determinar el tamaño del píxel en m de la imagen a exportar
+scale: 30,
+// Exportar la imagen en formato GeoTIFF
+fileFormat: 'GeoTIFF',
+// Definir la carpeta del Google Drive en la que se va a exportar
+// la imagen
+folder: 'DiferenciaNDVIL8'
 });
 ```
