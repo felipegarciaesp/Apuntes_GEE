@@ -23,11 +23,16 @@ https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores
 
 # Indice de objetos:
 
-**ee.Feature**: objetos de tipo vector.
-**ee.Image**: objetos de tipo imagen.
-**ee.FeatureCollection**: colecciones de vectores.
-**ee.ImageCollection**: colecciones de imágenes.
-**ee.Array**: arreglos.
+**ee.Feature**: objetos de tipo vector.  
+
+**ee.Image**: objetos de tipo imagen.  
+
+**ee.FeatureCollection**: colecciones de vectores.  
+
+**ee.ImageCollection**: colecciones de imágenes.  
+
+**ee.Array**: arreglos.  
+
 **ee.List**: listas.
 
 # Indice de métodos:
