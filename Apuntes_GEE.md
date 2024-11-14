@@ -32,7 +32,8 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 
 > Para los diccionarios se recomienda utilizar la notación de (punto). Seguida del nombre de la clave, ya que es la recomendada por GEE.
 
-> En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un <p style="color:red; font-weight:bold;">error ... is not a function.</p>
+> En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un <p style="color:red; font-weight:bold;">Esta es una frase en rojo y en negrita dentro de un bloque de citas.</p>
+
 
 # Secciones de la interfaz
 
