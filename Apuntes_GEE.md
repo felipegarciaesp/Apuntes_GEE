@@ -24,9 +24,11 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 
 > GEE permite exportar información en formato vector, pero solo en formato CSV, GeoJSON, KML, KMZ, SHP o TFRecord. El primer formato es el predeterminado.
 
+> Al igual que en la pestaña donde se organizan los repositorios y los códigos, en la pestaña de Assets se puede organizar la información en carpetas.
+
 # Secciones de la interfaz
 
-**Assets**: Sección donde el usuario puede subir su información a GEE. Acá se pueden importar varios tipos de archivos a GEE para utilizarlos en la API: imágenes (GeoTIFF), archivos vector (shapefiles), archivos separados por comas (csv), colecciones de imágenes exportadas por el mismo GEE y carpetas.
+**Assets**: Sección donde el usuario puede subir su información a GEE. 
 
 
 # Indice de bibliotecas
@@ -225,4 +227,8 @@ framesPerSecond: 24
 
 # Importación de información a GEE.
 
-![Opciones disponibles para importar datos tipo raster (GeoTIFF o TFRecord)](https://github.com/felipegarciaesp/Apuntes_GEE/blob/main/Figura%201.jpg)
+En la sección de Assets se pueden importar varios tipos de archivos a GEE para utilizarlos en la API: imágenes (GeoTIFF), archivos vector (shapefiles), archivos separados por comas (csv), colecciones de imágenes exportadas por el mismo GEE y carpetas.
+
+Para importar cualquiera de estos tipos de archivos, debes seguir el paso a paso que indica el libro en esta sección.
+
+El progreso en la subida del archivo a GEE se puede consultar en la pestaña de Tasks. Una vez terminado, se puede tener acceso al archivo dentro de la pestaña de Assets. Se sugiere presionar la tecla de refrescar en caso que no aparezca el archivo recién importado.
