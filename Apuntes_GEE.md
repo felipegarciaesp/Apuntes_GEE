@@ -17,7 +17,8 @@ https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores
 
 # Indice de bibliotecas
 
-**Map**: funciones encargadas del manejo de la pantalla del mapa.
+**Map**: funciones encargadas del manejo de la pantalla del mapa.  
+
 **ui.Chart**: funciones para realizar gráficos de diversos tipos.
 
 # Indice de objetos:
