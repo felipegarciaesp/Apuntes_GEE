@@ -22,6 +22,8 @@ https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores
 > En algunas ocasiones, al intentar exportar una imagen muy grande (mayor a 10 000 000 de píxeles), la consola puede mostrar un error indicando que el objeto a exportar tiene un número muy alto de píxeles. En este caso, se debe aumentar el
 número de píxeles máximo permitido para la exportación. Esto se logra indicando el argumento maxPixels dentro del diccionario que se pasa a Export.image.toDrive. Por ejemplo, maxPixels: 1e10, lo cual permite exportar una imagen con hasta 1 x 10^10 píxeles.
 
+> GEE permite exportar información en formato vector, pero solo en formato CSV, GeoJSON, KML, KMZ, SHP o TFRecord. El primer formato es el predeterminado.
+
 # Secciones de la interfaz
 
 **Assets**: Ssección donde el usuario puede subir su información a GEE.
@@ -171,3 +173,53 @@ fileFormat: 'GeoTIFF',
 folder: 'DiferenciaNDVIL8'
 });
 ```
+
+## Export.table
+
+El formato vector (ee.Feature) permite exportar información en forma de vectores y tablas que no contienen información geográfica (es decir, sin geometría). Para poder exportar en el formato vector, el objeto exportado debe estar en formato de colección de vectores (ee.FeatureCollection). Hay tres opciones para exportar objetos de tipo vector:
+
+**Export.table.toAsset**  
+**Export.table.toDrive**  
+**Export.table.toCloudStorage**  
+
+Ejemplo: 
+
+```
+Export.table.toDrive({
+// Definir la colección de vectores a exportar
+collection: feature,
+// Especificar el nombre con el que se va a guardar el
+// archivo en el Google Drive
+description: 'nombreArchivo',
+// Determinar la carpeta dentro de Google Drive donde
+// se va a guardar el archivo
+folder: 'mifolder',
+// Exportar la información en formato csv (valores
+// delimitados por comas)
+fileFormat: 'CSV'
+});
+```
+
+## Export.video
+
+Permite exportar una colección de imágenes como video, ya sea al almacenamiento de la nube de Google o al Drive.
+
+**Export.video.toCloudStorage**  
+**Export.video.toDrive**
+
+Ejemplo:
+
+```
+Export.video.toDrive({
+// Definir la colección de imágenes a exportar
+collection: coleccionImgs,
+// Especificar el nombre con el que se va a guardar el video
+// en el Google Drive
+description: 'videoTimelapse',
+// Definir la carpeta donde se va a exportar el video
+folder: 'mifolder',
+// Determinar el número de cuadros por segundo
+framesPerSecond: 24
+});
+```
+
