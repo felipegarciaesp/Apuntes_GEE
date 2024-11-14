@@ -36,3 +36,9 @@ Map.addLayer(image, {bands: ['B4', 'B3', 'B2'], min: 0,
                     max: 2000},
                     'RGB');
 ```
+
+Para el caso de los vectores se puede realizar una operación similar a las imágenes, auqnue el único argumento válido es **color**.
+
+```
+Map.addLayer(feature, {color: 'FF0000'}, 'featuresColored')
+```
