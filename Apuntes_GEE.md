@@ -1,10 +1,12 @@
 # Links de interés: 
 
-https://developers.google.com/earth-engine/apidocs : Revisar todas las funciones disponibles para la interfaz del usuario. Se indican los argumentos que acepta cada función, así como el tipo de objeto de la salida.
+https://developers.google.com/earth-engine/apidocs : Revisar todas las funciones disponibles para la interfaz del usuario. Se indican los argumentos que acepta cada función, así como el tipo de objeto de la salida. En la sección de **Client libraries** se pueden revisar los métodos disponibles en GEE clasificados por tipo de objeto del servidor.
 
 https://epsg.io/ : Consultar los codigos EPSG.
 
 https://htmlcolorcodes.com/es/ : Consultar códigos hexadecimales de los colores, para poder pasarlos como argumentos.
+
+
 
 
 # Consideraciones de GEE:
@@ -25,6 +27,12 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 > GEE permite exportar información en formato vector, pero solo en formato CSV, GeoJSON, KML, KMZ, SHP o TFRecord. El primer formato es el predeterminado.
 
 > Al igual que en la pestaña donde se organizan los repositorios y los códigos, en la pestaña de Assets se puede organizar la información en carpetas.
+
+> El usuario puede compartir sus archivos con otros usuarios de GEE como lector o editor. Esta opción está disponible al darle clic en el símbolo de compartir a la derecha de cada archivo (aparece una vez que se coloca el puntero sobre el nombre del archivo).
+
+> Para los diccionarios se recomienda utilizar la notación de (punto). Seguida del nombre de la clave, ya que es la recomendada por GEE.
+
+> En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un <p style="color:red; font-weight:bold;">error ... is not a function.</p>
 
 # Secciones de la interfaz
 
@@ -232,3 +240,63 @@ En la sección de Assets se pueden importar varios tipos de archivos a GEE para 
 Para importar cualquiera de estos tipos de archivos, debes seguir el paso a paso que indica el libro en esta sección.
 
 El progreso en la subida del archivo a GEE se puede consultar en la pestaña de Tasks. Una vez terminado, se puede tener acceso al archivo dentro de la pestaña de Assets. Se sugiere presionar la tecla de refrescar en caso que no aparezca el archivo recién importado.
+
+A continuación, algunas consideraciones para subir un nuevo archivo:
+
+> Para los archivos ráster, solo hace falta seleccionar el archivo correspondiente y dar clic en Upload.
+
+> Para los archivos tipo .shp es necesario subir los archivos auxiliares (dbf, prj, shx, cpg, fix, qix, sbn o shp.xml) con el mismo nombre. Para los archivos .zip es necesario que contengan los archivos auxiliares.
+
+> Para los archivos .csv es necesario que exista una columna de longitud y otra de latitud, las coordenadas deben ser decimales y estar en EPSG:4326 (WGS 84). El nombre de esas columnas se debe indicar en Advanced options / X column - Y column (longitud, latitud). Además, se debe tener absoluta claridad del tipo de delimitador (ejemplo: coma, punto y coma, u otro) y este debe ser especificado en Advanced options / CSV delimited.
+
+# Tipos de Objetos
+
+La gran variedad de objetos que tiene GEE se pueden agrupar en dos grandes rubros: objetos del lado del cliente y objetos del servidor. Esto según el lado donde se va a llevar a cado el procedimiento deseado.
+
+## Objetos del cliente y del servidor
+
+Existen dos lados de la programación de la API de GEE: el del servidor y el del cliente o usuario. Un objeto puede ser convertido entre los dos tipos. 
+
+Cliente: 'cadena'  
+Servidor: ee.String('cadena')  
+
+Cliente: 1 + 2  
+Servidor: ee.Number(1).add(ee.Number(2))  
+
+En la mayoría de los casos se va a utilizar la programación del lado del servidor, ya que es la que permite hacer todo el procesamiento en GEE. Por ejemplo, para el caso de las condiciones se sugiere utilizar en lugar de if y else, la función ee.Algorithms.If. Sin embargo, cabe aclarar que algunas funciones solo funcionan del lado del cliente. Por ejemplo, las funciones de la interfaz del usuario, utilizadas para exportar la
+información a algún archivo ee.Export (ya sea un ráster, un vector o una tabla), agregar una capa a la pantalla del mapa Map.addLayer o crear gráficos, así como imprimir información en la consola print.
+
+## Tipos de objetos del lado del cliente
+
+**Cadenas de texto:** cualquier cadena de caracteres que se encuentren entre un par de comillas dobles ("") o sencillas ('').
+**Números:** objetos numéricos que indican un valor, se utiliza el prunto decimal para números decimales.
+**Listas:** objetos que contienen varias entradas que pueden ser numericas, cadenas de texto o incluso otras listas.  
+**Diccionarios:** objetos que contienen claves (entradas) y valores asociados a estas claves (definiciones). 
+**Funciones:** la sintaxis para definir funciones en GEE es la que se presenta a continuación:
+
+```
+// MaskIm es una nueva función, su argumento de entrada es objeto
+var maskIm = function(objeto){
+// Se define qué objeto es una imagen ráster y se guarda en la
+// variable image
+var image = ee.Image(objeto);
+// Se selecciona solamente la banda de nombre 'pixel_qa' de
+// la imagen image
+var qaImage = image.select('pixel_qa');
+// Se crea una nueva imagen binaria donde será 1 los
+// píxeles con valor igual a 322, y 0 los demás
+var clearData = qaImage.eq(322);
+// Se crea una máscara con la imagen binaria, y se entrega la
+// imagen original enmascarada
+return image.updateMask(clearData);
+};
+```
+
+Aunque las unciones son propiamente objetos del lado del cliente, deben contener únicamente métodos del lado del servidor para que funcionen apropiadamente al trabajar en GEE.
+
+> Las funciones que se ejecuten sobre una colección de imágenes o vectores solo funcionan si regresan un objeto de tipo ee.Feature, ee.FeatureCollection, ee.Image o ee.ImageCollection, por lo cual, a veces, se deben realizar ciertas conversiones para evitar un error.
+
+## Tipos de objetos del lado del servidor
+
+Los objetos del lado del servidor tienen asociados una serie de métodos particulares por tipo de objeto, es decir, métodos distintos a los del lado del cliente.
+Los objetos del lado del servidor cuentan todos con el prefijo ee. seguido del nombre del tipo de objeto con inicial mayúscula.
