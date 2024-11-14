@@ -32,7 +32,7 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 
 > Para los diccionarios se recomienda utilizar la notación de (punto). Seguida del nombre de la clave, ya que es la recomendada por GEE.
 
-> En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un <p style="color:red; font-weight:bold;">Esta es una frase en rojo y en negrita dentro de un bloque de citas.</p>
+> En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un error ... is not a function.
 
 
 # Secciones de la interfaz
@@ -54,6 +54,7 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 **ee.ImageCollection**: colecciones de imágenes.  
 **ee.Array**: arreglos.  
 **ee.List**: listas.  
+**ee.String**: cadena de texto.
 
 
 
@@ -301,3 +302,5 @@ Aunque las unciones son propiamente objetos del lado del cliente, deben contener
 
 Los objetos del lado del servidor tienen asociados una serie de métodos particulares por tipo de objeto, es decir, métodos distintos a los del lado del cliente.
 Los objetos del lado del servidor cuentan todos con el prefijo ee. seguido del nombre del tipo de objeto con inicial mayúscula.
+
+En página 62 del PDF hay unos buenos dibujos con algunos de los objetos del lado del servidor más utilizados en GEE.
