@@ -34,6 +34,28 @@ número de píxeles máximo permitido para la exportación. Esto se logra indica
 
 > En algunos casos, los objetos que se obtienen a partir de ciertos métodos retornan un objeto de tipo indefinido (tipo objeto, ee.Object) como por ejemplo, al usar, en casos particulares, los métodos .first o .get, por lo cual se recomienda meter este objeto indefinido en un contenedor que indique el tipo de objeto del servidor. De no hacerlo, GEE mostrará un error ... is not a function.
 
+# Tipos de datos en GEE:
+- **Image:** archivo raster.  
+- **ImageCollection:** un stack o series temporales de imágenes.  
+- **Geometry:** archivo vectorial. Es solo el dibujo del poligono pero sin infomarción asociada.  
+- **Feature:** geometry con un atributo.  
+- **FeatureCollection:** geometry con un grupo de atributos.  
+
+LSIB 2017: Large Scale International Boundary Polygons, Simplified: dataset con el que vamos a trabajar en clase de Udemy.
+Pinchar en copiar "Collection snippet" para agregar los poligonos al codigo.
+
+# Map
+
+- *map()* se usa para iterar sobre los elementos de una colección.  
+- La función *map()* puede aplicarse a *ImageCollection*, *FeatureCollection* o una *Lista* y acepta una función como su argumento.  
+- Es útil para modificar todos los elementos de la colección de la misma manera.
+
+Ejemplo de código:
+
+
+
+
+
 
 # Secciones de la interfaz
 
